@@ -98,6 +98,7 @@ class SalaController extends Controller
         ]);
         //Intancia de la clase Sala
         $sala->nombre = $request->nombre;
+        $sala->descripcion = $request->descripcion;
         //Guardar la información con el método save
         $sala->save();
         //Redireccionar a la vista index
@@ -110,8 +111,12 @@ class SalaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Sala $sala)
     {
-        //
+        //Intancia de la clase Sala
+        //Eliminar registro con el método delete()
+        $sala->delete();
+        //Redireccionar a la vista index
+        return redirect()->route('salas.index');
     }
 }
