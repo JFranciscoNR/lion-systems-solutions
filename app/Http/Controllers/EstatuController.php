@@ -106,8 +106,12 @@ class EstatuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Estatu $estatu)
     {
-        //
+        //Intancia de la clase Estatu
+        //Eliminar registro con el método delete()
+        $estatu->delete();
+        //Redireccionar a la vista index
+        return redirect()->route('estatus.index');
     }
 }
