@@ -43,9 +43,9 @@ class SalaController extends Controller
         //Validaciones
         $request->validate([
             'nombre' => ['required','max:50', 'unique:salas,nombre'],
-            'descripcion' => ['max:200']
+            'descripcion' => ['max:200'],
         ]);
-        //creación de un objeto e instanciar la clase Estatu
+        //creación de un objeto e instanciar la clase Sala
         $sala = new Sala();
         $sala->nombre = $request->nombre;
         $sala->descripcion = $request->descripcion;
@@ -74,9 +74,11 @@ class SalaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Sala $sala)
     {
-        //
+        //Intancia de la clase Sala
+        //Pasamos la colección a la vista haciendo uso del método compact()
+        return view('salas.edit', compact('sala'));
     }
 
     /**
@@ -86,9 +88,20 @@ class SalaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sala $sala)
     {
-        //
+        //Validaciones
+        $request->validate([
+            'nombre' => ['required','max:50'],
+            'descripcion' => ['max:200'],
+
+        ]);
+        //Intancia de la clase Sala
+        $sala->nombre = $request->nombre;
+        //Guardar la información con el método save
+        $sala->save();
+        //Redireccionar a la vista index
+        return redirect()->route('salas.index');
     }
 
     /**
