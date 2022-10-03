@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header p-2 pb-0">
                     <div class="row">
@@ -14,7 +14,7 @@
                             <!-- Formulario que permite que funcione el buscador -->
                             <!-- Mediante la ruta pasamos labariable $buscar para que en el controlador 
                             se le asigne un valor y sea retornada a la vista -->
-                            <form class="d-flex" action="{{ route('estatus.index', $buscar) }}" method="GET">
+                            <form class="d-flex" action="{{ route('salas.index', $buscar) }}" method="GET">
                                 <input name="buscar" class="form-control me-2 mb-0" type="search" placeholder="Buscar" aria-label="buscar" value="{{ $buscar }}">
                                 <button class="btn btn-primary" type="submit">&#128270;</button>
                             </form> 
@@ -51,7 +51,7 @@
                                         <!-- Imprimimos nuestros registro -->
                                         <th scope="row" class="align-middle py-2">{{ $sala->id }}</th>
                                         <td class="align-middle py-2">{{ $sala->nombre }}</td>
-                                        <td class="align-middle py-2">{{ $sala->descripción }}</td>
+                                        <td class="align-middle py-2">{{ $sala->descripcion }}</td>
                                         <td class="py-2">
                                             <!-- Redireccionamos a la vista que muestra el detalle de cada registro -->
                                             <a href="{{ route('salas.show', $sala) }}" class="btn btn-primary" type="button">Mostrar</a>
