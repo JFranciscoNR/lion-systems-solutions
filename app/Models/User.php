@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    //Relación de 1 a muchos para la tabla de salas
+    public function salas(){
+        return $this->$this->hasMany('App\Models\Sala');
+    }
+    //Relación de 1 a muchos para la tabla de reservas
+    public function reservas(){
+        return $this->$this->hasMany('App\Models\Reserva');
+    }
 }
