@@ -72,9 +72,11 @@ class EstatuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Estatu $estatu)
     {
-        //
+        //Intancia de la clase Estatu
+        //Pasamos la colección a la vista haciendo uso del método compact()
+        return view('estatus.edit', compact('estatu'));
     }
 
     /**
@@ -84,9 +86,18 @@ class EstatuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Estatu $estatu)
     {
-        //
+        //Validaciones
+        $request->validate([
+            'nombre' => ['required','max:50'],
+        ]);
+        //Intancia de la clase Estatu
+        $estatu->nombre = $request->nombre;
+        //Guardar la información con el método save
+        $estatu->save();
+        //Redireccionar a la vista index
+        return redirect()->route('estatus.index');
     }
 
     /**
