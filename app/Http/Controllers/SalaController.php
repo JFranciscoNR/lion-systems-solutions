@@ -28,7 +28,8 @@ class SalaController extends Controller
      */
     public function create()
     {
-        //
+        //Redireccionamiento a la vista para crear registro
+        return view('salas.create');
     }
 
     /**
@@ -39,7 +40,19 @@ class SalaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validaciones
+        $request->validate([
+            'nombre' => ['required','max:50', 'unique:salas,nombre'],
+            'descripcion' => ['max:200']
+        ]);
+        //creación de un objeto e instanciar la clase Estatu
+        $sala = new Sala();
+        $sala->nombre = $request->nombre;
+        $sala->descripcion = $request->descripcion;
+        //Guardar la información con el método save
+        $sala->save();
+        //Redireccionar al registro creado
+        return redirect()->route('salas.show', $sala);
     }
 
     /**
