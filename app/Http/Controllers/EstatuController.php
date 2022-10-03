@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estatu;
 use Illuminate\Http\Request;
 
 class EstatuController extends Controller
@@ -11,9 +12,13 @@ class EstatuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $buscar = $request->get('buscar');
+        //Recuperación de todos los registros del modelo estatu
+        $estatus = Estatu::where('nombre','like','%'.$buscar.'%')->orderBy('id')->paginate(5);
+        //Pasamos la colección a la vista haciendo uso del método compact()
+        return view('estatus.index', compact(['estatus','buscar']));
     }
 
     /**
