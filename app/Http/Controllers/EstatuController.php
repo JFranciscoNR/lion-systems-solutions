@@ -28,7 +28,8 @@ class EstatuController extends Controller
      */
     public function create()
     {
-        //
+        //Redireccionamiento a la vista para crear registro
+        return view('estatus.create');
     }
 
     /**
@@ -39,7 +40,17 @@ class EstatuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validaciones
+        $request->validate([
+            'nombre' => ['required','max:50', 'unique:estatus,nombre'],
+        ]);
+        //creación de un objeto e instanciar la clase Estatu
+        $estatu = new Estatu();
+        $estatu->nombre = $request->nombre;
+        //Guardar la información con el método save
+        $estatu->save();
+        //Redireccionar al registro creado
+        return redirect()->route('estatus.show', $estatu);
     }
 
     /**
