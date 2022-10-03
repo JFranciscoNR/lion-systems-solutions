@@ -61,9 +61,11 @@ class SalaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Sala $sala)
     {
-        //
+        //Intancia de la clase Sala
+        //Pasamos la colección a la vista haciendo uso del método compact()
+        return view('salas.show', compact('sala'));
     }
 
     /**
