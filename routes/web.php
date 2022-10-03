@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EstatuController;
 use Illuminate\Support\Facades\Route;
 
 /*
