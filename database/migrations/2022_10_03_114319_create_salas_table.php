@@ -15,6 +15,24 @@ return new class extends Migration
     {
         Schema::create('salas', function (Blueprint $table) {
             $table->id();
+            //Campos
+            $table->string('nombre')->uniqid();
+            $table->string('descripcion')->nullable();
+            //Llaves foraneas
+            $table->unsignedBigInteger('user_id')
+                ->nullable();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null');
+
+            $table->unsignedBigInteger('estatu_id')
+                ->nullable();
+            $table->foreign('estatu_id')
+                ->references('id')
+                ->on('estatus')
+                ->onDelete('set null');
+
             $table->timestamps();
         });
     }
