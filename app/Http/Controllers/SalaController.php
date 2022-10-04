@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sala;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SalaController extends Controller
 {
@@ -49,6 +50,14 @@ class SalaController extends Controller
         $sala = new Sala();
         $sala->nombre = $request->nombre;
         $sala->descripcion = $request->descripcion;
+        //Si el campo es nulo, se agregara el id del usuario autentificado
+        if(is_null($sala->user_id)){
+            $sala->user_id = Auth::user()->id;
+        }
+        //Si el campo es nulo, se agregara el id del estatus 1
+        if(is_null($sala->estatu_id)){
+            $sala->estatu_id = 1;
+        }
         //Guardar la información con el método save
         $sala->save();
         //Redireccionar al registro creado

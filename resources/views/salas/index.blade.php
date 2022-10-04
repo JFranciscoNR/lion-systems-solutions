@@ -40,6 +40,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Descripción</th>
+                                    <th scope="col">Estatu</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                                 </thead>
@@ -52,6 +53,7 @@
                                         <th scope="row" class="align-middle py-2">{{ $sala->id }}</th>
                                         <td class="align-middle py-2">{{ $sala->nombre }}</td>
                                         <td class="align-middle py-2">{{ $sala->descripcion }}</td>
+                                        <td class="align-middle py-2">{{ $sala->estatu->nombre }}</td>
                                         <td class="py-2">
                                             <!-- Redireccionamos a la vista que muestra el detalle de cada registro -->
                                             <a href="{{ route('salas.show', $sala) }}" class="btn btn-primary" type="button">Mostrar</a>
