@@ -13,8 +13,9 @@
                         </div>
                     @endif
                     <!-- Imprimimos el nombre del registro -->
-                    <h5 class="card-title mb-0">Salas: {{ $sala->nombre }}</h5>
-                    <p class="card-text">Descripción: {{ $sala->descripcion }}</p>
+                    <h5 class="card-title">Salas: {{ $sala->nombre }}</h5>
+                    <p class="card-text mb-0">Descripción: {{ $sala->descripcion }}</p>
+                    <p class="card-text">Estatus: {{ $sala->estatu->nombre }}</p>
                 </div>
                 <div class="card-footer text-end">
                     <!-- Redireccionamos a la vista index -->
