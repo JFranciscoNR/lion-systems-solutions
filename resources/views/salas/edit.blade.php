@@ -25,11 +25,26 @@
                         @error('nombre')
                             {{ $message }}
                         @enderror
-                        <div class="form-floating">
+                        <div class="form-floating mb-2">
                             <textarea class="form-control" name="descripcion" placeholder="Descripción" id="floatingTextarea" required>{{ old('descripcion',$sala->descripcion) }}</textarea>
                             <label for="floatingTextarea">Descripción</label>
                         </div>
                         @error('descripcion')
+                            {{ $message }}
+                        @enderror
+                        <div class="form-floating">
+                            <select class="form-select" name="estatu_id" id="floatingSelect" required>
+                                <option disabled>Selecciona una opción</option>
+                                <!-- El bucle foreach almacena los registros de 
+                                nuestra colección en una variable -->
+                                @foreach ($estatus as $estatu)
+                                    <!-- Imprimimos nuestros registro -->
+                                    <option value="{{ $estatu->id }}">{{ $estatu->nombre }}</option>
+                                @endforeach
+                            </select>
+                            <label for="floatingSelect">Selecciona un estatus</label>
+                        </div>
+                        @error('estatu_id')
                             {{ $message }}
                         @enderror
                 </div>
