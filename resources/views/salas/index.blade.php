@@ -76,7 +76,7 @@
                                 @if ($salas->hasPages())
                                     <tfoot>
                                         <tr>
-                                            <td colspan="3" class="p-0 pt-3 px-2 mb-0">
+                                            <td colspan="5" class="p-0 pt-3 px-2 mb-0">
                                                 <!-- Paginación -->
                                                 {{ $salas->links() }}
                                             </td>
