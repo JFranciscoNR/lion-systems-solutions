@@ -46,6 +46,9 @@
                             </select>
                             <label for="floatingSelect">Selecciona un estatus</label>
                         </div>
+                        @error('estatu_id')
+                            {{ $message }}
+                        @enderror
                 </div>
                 <div class="card-footer text-end">
                     <!-- Redireccionamos a la vista index -->
