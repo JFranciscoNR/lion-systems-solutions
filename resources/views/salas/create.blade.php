@@ -23,13 +23,29 @@
                         @error('nombre')
                             {{ $message }}
                         @enderror
-                        <div class="form-floating">
+                        <div class="form-floating mb-2">
                             <textarea class="form-control" name="descripcion" placeholder="Descripción" id="floatingTextarea" required>{{ old('descripcion') }}</textarea>
                             <label for="floatingTextarea">Descripción</label>
                         </div>
                         @error('descripcion')
                             {{ $message }}
                         @enderror
+                        <div class="form-floating">
+                            <select class="form-select" name="estatu_id" id="floatingSelect" required>
+                                <option disabled>Selecciona una opción</option>
+                                <!-- El bucle foreach almacena los registros de 
+                                nuestra colección en una variable -->
+                                @foreach ($estatus as $estatu)
+                                    <!-- Obtenemos la primer interacción con la directiva de blade if
+                                    haciendo uso de la variable de bucle -->
+                                    @if ($loop->first)
+                                    <!-- Imprimimos nuestros registro -->
+                                        <option value="{{ $estatu->id }}" selected>{{ $estatu->nombre }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            <label for="floatingSelect">Selecciona un estatus</label>
+                        </div>
                 </div>
                 <div class="card-footer text-end">
                     <!-- Redireccionamos a la vista index -->
