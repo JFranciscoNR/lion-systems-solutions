@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estatu;
 use App\Models\Sala;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,8 +30,11 @@ class SalaController extends Controller
      */
     public function create()
     {
-        //Redireccionamiento a la vista para crear registro
-        return view('salas.create');
+        //Recuperación de todos los registros del modelo estatu
+        $estatus = Estatu::all();
+        //Redireccionamiento a la vista para crear registro y 
+        //pasamos la colección a la vista haciendo uso del método compact()
+        return view('salas.create', compact('estatus'));
     }
 
     /**
@@ -45,6 +49,7 @@ class SalaController extends Controller
         $request->validate([
             'nombre' => ['required','max:50', 'unique:salas,nombre'],
             'descripcion' => ['max:200'],
+            'estatu_id' => ['required', 'numeric'],
         ]);
         //creación de un objeto e instanciar la clase Sala
         $sala = new Sala();
@@ -54,10 +59,7 @@ class SalaController extends Controller
         if(is_null($sala->user_id)){
             $sala->user_id = Auth::user()->id;
         }
-        //Si el campo es nulo, se agregara el id del estatus 1
-        if(is_null($sala->estatu_id)){
-            $sala->estatu_id = 1;
-        }
+        $sala->estatu_id = $request->estatu_id;
         //Guardar la información con el método save
         $sala->save();
         //Redireccionar al registro creado
