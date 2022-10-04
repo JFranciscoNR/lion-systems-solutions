@@ -33,7 +33,7 @@ class SalaController extends Controller
         //Recuperación de todos los registros del modelo estatu
         $estatus = Estatu::all();
         //Redireccionamiento a la vista para crear registro y 
-        //pasamos la colección a la vista haciendo uso del método compact()
+        //Pasamos la colección a la vista haciendo uso del método compact()
         return view('salas.create', compact('estatus'));
     }
 
@@ -87,9 +87,11 @@ class SalaController extends Controller
      */
     public function edit(Sala $sala)
     {
+        //Recuperación de todos los registros del modelo estatu
+        $estatus = Estatu::all();
         //Intancia de la clase Sala
         //Pasamos la colección a la vista haciendo uso del método compact()
-        return view('salas.edit', compact('sala'));
+        return view('salas.edit', compact(['sala','estatus']));
     }
 
     /**
@@ -105,11 +107,12 @@ class SalaController extends Controller
         $request->validate([
             'nombre' => ['required','max:50'],
             'descripcion' => ['max:200'],
-
+            'estatu_id' => ['required', 'numeric'],
         ]);
         //Intancia de la clase Sala
         $sala->nombre = $request->nombre;
         $sala->descripcion = $request->descripcion;
+        $sala->estatu_id = $request->estatu_id;
         //Guardar la información con el método save
         $sala->save();
         //Redireccionar a la vista index
