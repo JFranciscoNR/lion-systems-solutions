@@ -38,7 +38,7 @@
                                 @foreach ($estatus as $estatu)
                                     <!-- Obtenemos la primer interacción con la directiva de blade if
                                     haciendo uso de la variable de bucle -->
-                                    @if ($loop->first)
+                                    @if ($estatu->nombre == 'Disponible' )
                                     <!-- Imprimimos nuestros registro -->
                                         <option value="{{ $estatu->id }}" selected>{{ $estatu->nombre }}</option>
                                     @endif

@@ -15,6 +15,8 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="{{ asset('/js/app.js')}}"></script>
+
 </head>
 <body>
     <div id="app">
@@ -62,6 +64,9 @@
                                     <a class="dropdown-item" href="{{ route('salas.index') }}">
                                         {{ __('Salas') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('reservas.index') }}">
+                                        {{ __('Reservas') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -82,6 +87,27 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <script>
+            function pasarFecha(){
+                var fechaInicio = document.getElementById('fecha_inicio').value
+                var fechaInput = new Date(fechaInicio)
+                //fechaInput.setMinutes(fechaInput.getMinutes() - fechaInput.getTimezoneOffset());
+		        fechaInput = fechaInput.toJSON().slice(0,10)
+                console.log(fechaInicio)
+                console.log(fechaInput)
+                document.getElementById('fecha_termino').value = fechaInput
+                //validaciones
+                document.getElementById('fecha_termino').setAttribute("min", fechaInicio)
+                document.getElementById('fecha_termino').setAttribute("max", fechaInput)
+            }   
+            function pasarTiempo(){
+                var tiempoInicio = document.getElementById('tiempo_inicio').value
+                var tiempoInput = new Intl.DateTimeFormat(undefined, { timeStyle: "short" }).format(new Date());
+                console.log(tiempoInput)
+                document.getElementById('tiempo_termino').value = tiempoInput
+            }
+        </script>
+        @stack('script')
     </div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EstatuController;
+use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\SalaController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,3 +53,19 @@ Route::get('salas/{sala}/edit', [SalaController::class, 'edit'])->name('salas.ed
 Route::put('salas/{sala}', [SalaController::class, 'update'])->name('salas.update');
 //Ruta para eliminar un registro
 Route::delete('salas/{sala}/delete', [SalaController::class, 'destroy'])->name('salas.destroy');
+
+//Creación de las rutas necesarias para realizar nuestro crud de reservas
+//Ruta que muestra el listado de registros
+Route::get('reservas', [ReservaController::class, 'index'])->name('reservas.index');
+//Ruta de redireccionamiento a la vista para crear un nuevo registro
+Route::get('reservas/create', [ReservaController::class, 'create'])->name('reservas.create');
+//Ruta para crear un nuevo registro
+Route::post('reservas', [ReservaController::class, 'store'])->name('reservas.store');
+//Ruta que muestra los detalles de cada registro
+Route::get('reservas/{reserva}', [ReservaController::class, 'show'])->name('reservas.show');
+//Ruta de redireccionamiento a la vista para actualizar un registro
+Route::get('reservas/{reserva}/edit', [ReservaController::class, 'edit'])->name('reservas.edit');
+//Ruta para actualizar un regustro
+Route::put('reservas/{reserva}', [ReservaController::class, 'update'])->name('reservas.update');
+//Ruta para eliminar un registro
+Route::delete('reservas/{reserva}/delete', [ReservaController::class, 'destroy'])->name('reservas.destroy');

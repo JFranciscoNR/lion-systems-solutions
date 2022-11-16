@@ -15,8 +15,8 @@ class Reserva extends Model
         'fecha_inicio',
         'fecha_termino',
         'user_id',
-        'estatu_id',
         'sala_id',
+        'estatu_id',
     ];
     //Relación 1 a muchos invertida para la tabla de estatus 
     public function estatu(){
